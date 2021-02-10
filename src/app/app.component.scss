@@ -1,0 +1,54 @@
+.container {
+  margin: 20px;
+  position: relative;
+  width: 100%;
+  align-content: center;
+
+  .common-color {
+    position: relative;
+    border-radius: 300px;
+    width: 300px;
+    height: 300px;
+    margin: 0;
+  }
+
+  .button-group {
+    display: flex;
+    position: relative;
+    margin-left: 50px;
+  }
+
+  .color-pallet {
+    display: flex;
+
+    .color-with-slider {
+     display: table-row;
+      justify-content: right;
+      width: 300px;
+
+      .text{
+        text-align: center;
+        font-size: 20px;
+        background-color: darkorange;
+      }
+
+      .slider {
+        width: 100%;
+      }
+
+      .example-margin {
+        transform: translateX(200%);
+        width: 20%;
+      }
+
+      .color-block-red {
+        transform: translateX(100%);
+        display: flex;
+        border-radius: 100px;
+        width: 100px;
+        height: 100px;
+        margin: 0;
+      }
+    }
+  }
+}
