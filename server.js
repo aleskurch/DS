@@ -9,7 +9,7 @@ app.use(express.static(__dirname + '/dist/DS'));
 
 app.get('/*', function(req,res) {
 
-  res.sendFile(path.join(__dirname+'/dist/DSnpm install express path --save/index.html'));
+  res.sendFile(path.join(__dirname+'/dist/DS'));
 });
 
 // Start the app by listening on the default Heroku port

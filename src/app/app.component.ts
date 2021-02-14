@@ -141,12 +141,15 @@ export class AppComponent implements OnInit {
   onChangeInputXYZ(): void {
     if (this.xCommon > 1 || this.xCommon < 0) {
       alert('Wrong value');
+      this.xCommon = 1;
     }
     if (this.yCommon > 1 || this.yCommon < 0) {
       alert('Wrong value');
+      this.yCommon = 1;
     }
     if (this.zCommon > 1 || this.zCommon < 0) {
       alert('Wrong value');
+      this.zCommon = 1;
     }
     const toRGB = this.XYZtoRGB(this.xCommon, this.yCommon, this.zCommon);
     if (toRGB[3] !== -Infinity) {
@@ -166,12 +169,15 @@ export class AppComponent implements OnInit {
   onChangeInputHSV(): void {
     if (this.hCommon > 1 || this.hCommon < 0) {
       alert('Wrong value');
+      this.hCommon = 1;
     }
     if (this.sCommon > 1 || this.sCommon < 0) {
       alert('Wrong value');
+      this.sCommon = 1;
     }
     if (this.vCommon > 1 || this.vCommon < 0) {
       alert('Wrong value');
+      this.vCommon = 1;
     }
     const toRGB = this.HSVtoRGB(this.hCommon, this.sCommon, this.vCommon);
     this.redCommon = toRGB[0];
