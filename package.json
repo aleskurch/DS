@@ -3,12 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng server.js",
+    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "postinstall": "ng build --aot -prod"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -24,10 +23,7 @@
     "@angular/router": "~11.1.2",
     "@iplab/ngx-color-picker": "^2.0.4",
     "color-string": "^1.5.4",
-    "express": "^4.17.1",
     "ngx-color-picker": "^11.0.0",
-    "pass": "^0.2.0",
-    "path": "^0.12.7",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"
@@ -39,7 +35,6 @@
     "@types/jasmine": "~3.6.0",
     "@types/node": "^12.11.1",
     "codelyzer": "^6.0.0",
-    "enhanced-resolve": "^3.3.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.2.0",
