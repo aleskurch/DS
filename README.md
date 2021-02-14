@@ -1,27 +1,28 @@
-# DS
+# Color schems translater
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.4.
+Данный проект позволяет производить быстрые автоматизированные переводы между цветовыми палитрами HSV, RGB и XYZ
 
-## Development server
+## Guide
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+При базовой инициализации проект вам выдастся сандартный цвет функсии в трех цветовых схемах с разделениям по компонентам
 
-## Code scaffolding
+1) Изменять цвет можно при помощи задания какой либо из его компонент путем ввода значение в поле инпута
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+✳️ No: Привыходе за границы дипазона цветовых палитр будет выведено уведомление, а цвет будет сброшен до максимального значения по данной компаненте (❗️для палитры XYZ данное значение может вызвать инвалидность перевода❗️)
 
-## Build
+2) Цветовая палитра XYZ содержи комбинации инвалидные к перводу. При выборе такой комбинации цвет-показатель и компоненты других палитр не изменятся
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+3) Для изменения компонент так же можно использовать слайдеры, изменения которых повлечет за собой изменение компонент других палитр, а так же изменение всех зависимых инпутов
 
-## Running unit tests
+4) Colorpicker для цветовых схем XYZ & HSV является сложным графическим процессом, поэтому он унифицирован к RGB спектру. Вызов данного селектора осуществляется по средствам нажатия на цвет-показатель и реализован при помощи сторонней библиотеки. Выбор цвета и окончание работы с силектором путем нажатия вне его поля повлечет за собой изменения всех цветовых компонент во всех цветовых моделях
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Inner Logic
 
-## Running end-to-end tests
+Отображение цвета в JavaScript реализовано по средствам цветовой палитры RGB или цветового задания HEX приводимого к RGB. Эта особенность обуславливает выбор "основной" цветовой палитры. Ей стала RGB все переводы осуществляются по средствам приведения к RGB. Так например изменение цвета в палитре HSV повлечет за собой преобразования к RGB палитре, которая впоследсвие используется самостоятельно и будет преобразована так же и к XYZ. 
+✳️ No_1: Реализация преобразований представлена ввиде функция COLOR_PALETT_1toCOLOR_PALETT_2 (напр. HSVtoRGB)
+✳️ No_2: Реализация преобразований HSVtoXYZ и XYZtoHSV отсутствует, т.к. в рассмотренном выше пункте объясняется его ненужность
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Run
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Запуск программы осуществляется при помощи перехода по ссылке на "песочницу" stackBlitz.io
+✳️ No: Возможно присутствие некоторых графических подлагиваний связанных с низкой графической способностью данного сервиса
