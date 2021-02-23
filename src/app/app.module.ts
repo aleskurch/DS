@@ -26,7 +26,6 @@ import {ColorPickerModule} from 'ngx-color-picker';
     ColorPickerModule,
     MatButtonModule,
     ColorPickerModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent]
