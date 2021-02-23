@@ -248,9 +248,16 @@ export class AppComponent implements OnInit {
     const G = Math.round(this.adj(-0.9692660 * X + 1.8760108 * Y + 0.0415560 * Z) * 255);
     const B = Math.round(this.adj(0.0556434 * X - 0.2040259 * Y + 1.0572252 * Z) * 255);
     console.log([R, G, B]);
-    if (R > 255 || R < 0 || G > 255 || G < 0 || B > 255 || B < 0) {
-      return [213, 71, 120, -Infinity];
-    } else {
+    if (R > 255 || R < 0) {
+      return [0, G, B, -Infinity];
+    }
+    if (G > 255 || G < 0) {
+      return [R, 0, B, -Infinity];
+    }
+    if (B > 255 || B < 0) {
+      return [R, G, 0, -Infinity];
+    }
+    else {
       return [R, G, B, Infinity];
     }
   }
