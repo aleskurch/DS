@@ -66,52 +66,61 @@ export class AppComponent implements OnInit {
   OnSliderXChange(xSlider: MatSliderChange): void {
     this.xCommon = xSlider.value;
     const toRGB = this.XYZtoRGB(this.xCommon, this.yCommon, this.zCommon);
-    if (toRGB[3] !== -Infinity) {
-      this.redCommon = toRGB[0];
-      this.greenCommon = toRGB[1];
-      this.blueCommon = toRGB[2];
-      const toHSV = this.RGBtoHSV(toRGB[0], toRGB[1], toRGB[2]);
-      this.hCommon = toHSV[0];
-      this.sCommon = toHSV[1];
-      this.vCommon = toHSV[2];
-      document.getElementById('common').style.backgroundColor = `rgb(${toRGB[0]},${toRGB[1]},${toRGB[2]})`;
-    } else {
+    this.redCommon = toRGB[0];
+    this.greenCommon = toRGB[1];
+    this.blueCommon = toRGB[2];
+    if (toRGB[3] === -Infinity) {
+      const toXYZ = this.RGBtoXYZ(this.redCommon, this.greenCommon, this.blueCommon);
+      this.xCommon = toXYZ[0];
+      this.yCommon = toXYZ[1];
+      this.zCommon = toXYZ[2];
       alert('Invalid Color');
     }
+    const toHSV = this.RGBtoHSV(toRGB[0], toRGB[1], toRGB[2]);
+    this.hCommon = toHSV[0];
+    this.sCommon = toHSV[1];
+    this.vCommon = toHSV[2];
+    document.getElementById('common').style.backgroundColor = `rgb(${toRGB[0]},${toRGB[1]},${toRGB[2]})`;
   }
 
   OnSliderYChange(ySlider: MatSliderChange): void {
     this.yCommon = ySlider.value;
     const toRGB = this.XYZtoRGB(this.xCommon, this.yCommon, this.zCommon);
-    if (toRGB[3] !== -Infinity) {
-      this.redCommon = toRGB[0];
-      this.greenCommon = toRGB[1];
-      this.blueCommon = toRGB[2];
-      const toHSV = this.RGBtoHSV(toRGB[0], toRGB[1], toRGB[2]);
-      this.hCommon = toHSV[0];
-      this.sCommon = toHSV[1];
-      this.vCommon = toHSV[2];
-      document.getElementById('common').style.backgroundColor = `rgb(${toRGB[0]},${toRGB[1]},${toRGB[2]})`;
-    } else {
+    this.redCommon = toRGB[0];
+    this.greenCommon = toRGB[1];
+    this.blueCommon = toRGB[2];
+    if (toRGB[3] === -Infinity) {
+      const toXYZ = this.RGBtoXYZ(this.redCommon, this.greenCommon, this.blueCommon);
+      this.xCommon = toXYZ[0];
+      this.yCommon = toXYZ[1];
+      this.zCommon = toXYZ[2];
       alert('Invalid Color');
     }
+    const toHSV = this.RGBtoHSV(toRGB[0], toRGB[1], toRGB[2]);
+    this.hCommon = toHSV[0];
+    this.sCommon = toHSV[1];
+    this.vCommon = toHSV[2];
+    document.getElementById('common').style.backgroundColor = `rgb(${toRGB[0]},${toRGB[1]},${toRGB[2]})`;
   }
 
   OnSliderZChange(zSlider: MatSliderChange): void {
     this.zCommon = zSlider.value;
     const toRGB = this.XYZtoRGB(this.xCommon, this.yCommon, this.zCommon);
-    if (toRGB[3] !== -Infinity) {
-      this.redCommon = toRGB[0];
-      this.greenCommon = toRGB[1];
-      this.blueCommon = toRGB[2];
-      const toHSV = this.RGBtoHSV(toRGB[0], toRGB[1], toRGB[2]);
-      this.hCommon = toHSV[0];
-      this.sCommon = toHSV[1];
-      this.vCommon = toHSV[2];
-      document.getElementById('common').style.backgroundColor = `rgb(${toRGB[0]},${toRGB[1]},${toRGB[2]})`;
-    } else {
+    this.redCommon = toRGB[0];
+    this.greenCommon = toRGB[1];
+    this.blueCommon = toRGB[2];
+    if (toRGB[3] === -Infinity) {
+      const toXYZ = this.RGBtoXYZ(this.redCommon, this.greenCommon, this.blueCommon);
+      this.xCommon = toXYZ[0];
+      this.yCommon = toXYZ[1];
+      this.zCommon = toXYZ[2];
       alert('Invalid Color');
     }
+    const toHSV = this.RGBtoHSV(toRGB[0], toRGB[1], toRGB[2]);
+    this.hCommon = toHSV[0];
+    this.sCommon = toHSV[1];
+    this.vCommon = toHSV[2];
+    document.getElementById('common').style.backgroundColor = `rgb(${toRGB[0]},${toRGB[1]},${toRGB[2]})`;
   }
 
   onChangeInput(): void {
@@ -152,18 +161,23 @@ export class AppComponent implements OnInit {
       this.zCommon = 1;
     }
     const toRGB = this.XYZtoRGB(this.xCommon, this.yCommon, this.zCommon);
-    if (toRGB[3] !== -Infinity) {
-      this.redCommon = toRGB[0];
-      this.greenCommon = toRGB[1];
-      this.blueCommon = toRGB[2];
-      const toHSV = this.RGBtoHSV(toRGB[0], toRGB[1], toRGB[2]);
-      this.hCommon = toHSV[0];
-      this.sCommon = toHSV[1];
-      this.vCommon = toHSV[2];
-      document.getElementById('common').style.backgroundColor = `rgb(${toRGB[0]},${toRGB[1]},${toRGB[2]})`;
-    } else {
+    this.redCommon = toRGB[0];
+    this.greenCommon = toRGB[1];
+    this.blueCommon = toRGB[2];
+    if (toRGB[3] === -Infinity) {
       alert('Invalid Color');
+      const toXYZ = this.RGBtoXYZ(this.redCommon, this.greenCommon, this.blueCommon);
+      this.xCommon = toXYZ[0];
+      this.yCommon = toXYZ[1];
+      this.zCommon = toXYZ[2];
     }
+    const toHSV = this.RGBtoHSV(toRGB[0], toRGB[1], toRGB[2]);
+    this.hCommon = toHSV[0];
+    this.sCommon = toHSV[1];
+    this.vCommon = toHSV[2];
+    document.getElementById('common').style.backgroundColor = `rgb(${toRGB[0]},${toRGB[1]},${toRGB[2]})`;
+
+
   }
 
   onChangeInputHSV(): void {
@@ -317,37 +331,37 @@ export class AppComponent implements OnInit {
         g = t;
         b = p;
       }
-              break;
+        break;
       case 1: {
         r = q;
         g = v;
         b = p;
       }
-              break;
+        break;
       case 2: {
         r = p;
         g = v;
         b = t;
       }
-              break;
+        break;
       case 3: {
         r = p;
         g = q;
         b = v;
       }
-              break;
+        break;
       case 4: {
         r = t;
         g = p;
         b = v;
       }
-              break;
+        break;
       case 5: {
         r = v;
         g = p;
         b = q;
       }
-              break;
+        break;
     }
     return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
   }
