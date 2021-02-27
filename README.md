@@ -1,27 +1,12 @@
-# DS
+## FileInfo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.4.
+Данный проект позволяет получить сводную информацию по мета-данным файла
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Данная программа использует стандартны возможности чтения файла языка JavaScript, а так же сторонюю библиотеку ExifReader. Именно благодаря метаданным Exif происходит извлечение информации из файлов. Для выбора файла используется input с type="file", являющийся встроенным форматированием стандартного input по средствам фрэймворка Angular. К приймуществам такого формата считывания можно отнести наглядность и скорость исполнения (на проверочной папке с 600 файлами скорость утеряна не была)
 
-## Code scaffolding
+## Run
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Запуск программы осуществляется при помощи перехода по ссылке на "песочницу" stackBlitz.io 
+✳️ No: Возможно присутствие некоторых графических подлагиваний связанных с низкой графической способностью данного сервиса
