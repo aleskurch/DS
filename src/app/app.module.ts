@@ -10,6 +10,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {ColorPickerModule} from 'ngx-color-picker';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import {ColorPickerModule} from 'ngx-color-picker';
     BrowserModule,
     BrowserAnimationsModule,
     MatSliderModule,
+    MatCardModule,
     MatSlideToggleModule,
     MatInputModule,
     MatFormFieldModule,

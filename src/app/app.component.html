@@ -1,3 +1,18 @@
 <div class="container">
-<input type="file" (change)="onSelectFile($event)">
+  <input class="input-file" type="file" (change)="onSelectFile($event)">
+  <mat-card class="example-card" *ngIf="file">
+    <mat-card-header>
+      <mat-card-title>Image Info:</mat-card-title>
+    </mat-card-header>
+    <img *ngIf="file !== 'bad'" class="img-present" [src]="file">
+    <img *ngIf="file === 'bad'" class="img-present" src="./assets/bad.png">
+    <mat-card-content>
+      <p>Name: {{name}}</p>
+      <p>Width: {{width}}px</p>
+      <p>Height: {{height}}px</p>
+      <p>DPI: {{dpi}} (dots/inch)</p>
+      <p *ngIf="colorDepth">Color Depth: {{colorDepth}}</p>
+      <p *ngIf="compressions">Compressions: {{compressions}}</p>
+    </mat-card-content>
+  </mat-card>
 </div>

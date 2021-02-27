@@ -3,4 +3,23 @@
   position: relative;
   width: 100%;
   align-content: center;
+  .input-file {
+    margin: 10px;
+    background-color: #a0db0b;
+    color: white;
+  }
+  .img-present {
+    display: block;
+    border-radius: 5px;
+    width: 100%;
+    max-height: 500px;
+    margin-bottom: 20px;
+  }
+  .example-card {
+    background-color: #a0db0b;
+    color: white;
+    width: 300px;
+    height: max-content;
+    margin: 10px;
+  }
 }
