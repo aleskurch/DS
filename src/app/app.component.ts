@@ -88,7 +88,8 @@ export class AppComponent {
       const mtch = rgxp.exec(file.name);
       const width = +mtch.slice(1, 4)[0];
       const height = +mtch.slice(1, 4)[1];
-      dpiCalc = ` ${Math.round(file.size * 8 / width / height)}bit`;
+      const dip = Math.round(file.size / width / height) > 1 ? Math.round(file.size / width / height) : 8;
+      dpiCalc = ` ${dip}bit`;
     }
     this.colorDepth = !dpiCalc ? depth + 'bit' : dpiCalc;
     this.cd.detectChanges();
