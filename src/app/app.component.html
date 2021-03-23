@@ -1,23 +1,23 @@
 <div class="container">
-  <button [disabled]="!(spinnerSelector === 0 || spinnerSelector === 1)" mat-raised-button class="draw-button" color="accent" (click)="spinnerSelector = 1; spinner.show(); onDraw()">D<br>r<br>a<br>w<br></button>
+  <button [disabled]="!(spinnerSelector === 0 || spinnerSelector === 1)" mat-raised-button class="draw-button" color="accent" (click)="spinnerSelector = 1; spinner.show(); onDraw()">Р<br>е<br>з<br>к<br>о<br>с<br>с<br>т<br>ь</button>
   <canvas id="canvas" class="canvas"></canvas>
   <div class="with-spinner">
     <ngx-spinner *ngIf="spinnerSelector === 1" bdColor = "rgba(59,74,255,0)" size = "large" type = "ball-clip-rotate-multiple" [fullScreen] = "false"></ngx-spinner>
     <canvas id="canvas2" class="canvas" style="background-color: #4a5d9b"></canvas>
   </div>
-  <button mat-raised-button [disabled]="!(spinnerSelector === 0 || spinnerSelector === 2)" class="draw-button" color="accent" (click)="spinnerSelector = 2; spinner.show(); onDraw2()">D<br>r<br>a<br>w<br></button>
+  <button mat-raised-button [disabled]="!(spinnerSelector === 0 || spinnerSelector === 2)" class="draw-button" color="accent" (click)="spinnerSelector = 2; spinner.show(); onDraw2()">П<br>о<br>р<br>о<br>г<br><br>1</button>
   <canvas id="canvas3" class="canvas3"></canvas>
   <div class="with-spinner">
     <ngx-spinner *ngIf="spinnerSelector === 2" bdColor = "rgba(59,74,255,0)" size = "large" type = "ball-clip-rotate-multiple" [fullScreen] = "false"></ngx-spinner>
     <canvas id="canvas4" class="canvas3" style="background-color: #4a5d9b"></canvas>
   </div>
-  <button mat-raised-button [disabled]="!(spinnerSelector === 0 || spinnerSelector === 3)" class="draw-button" color="accent" (click)="spinnerSelector = 3; spinner.show(); onDraw3()">D<br>r<br>a<br>w<br></button>
+  <button mat-raised-button [disabled]="!(spinnerSelector === 0 || spinnerSelector === 3)" class="draw-button" color="accent" (click)="spinnerSelector = 3; spinner.show(); onDraw3()">П<br>о<br>р<br>о<br>г<br><br>2</button>
   <canvas id="canvas5" class="canvas3"></canvas>
   <div class="with-spinner">
     <ngx-spinner *ngIf="spinnerSelector === 3" bdColor = "rgba(59,74,255,0)" size = "large" type = "ball-clip-rotate-multiple" [fullScreen] = "false"></ngx-spinner>
     <canvas id="canvas6" class="canvas3" style="background-color: #4a5d9b"></canvas>
   </div>
-  <button mat-raised-button [disabled]="!(spinnerSelector === 0 || spinnerSelector === 4)" class="draw-button" color="accent" (click)="spinnerSelector = 4; spinner.show(); onDraw4()">D<br>r<br>a<br>w<br></button>
+  <button mat-raised-button [disabled]="!(spinnerSelector === 0 || spinnerSelector === 4)" class="draw-button" color="accent" (click)="spinnerSelector = 4; spinner.show(); onDraw4()">А<br>д<br>а<br>п<br>т<br>и<br>в<br>н<br>ы<br>й</button>
   <canvas id="canvas7" class="canvas3"></canvas>
   <div class="with-spinner">
     <ngx-spinner *ngIf="spinnerSelector === 4" bdColor = "rgba(59,74,255,0)" size = "large" type = "ball-clip-rotate-multiple" [fullScreen] = "false"></ngx-spinner>
