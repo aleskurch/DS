@@ -30,6 +30,9 @@ export class AppComponent implements OnInit {
 
   onDraw(): void {
     const img = document.getElementById('source2') as CanvasImageSource;
+    if ('crossOrigin' in img) {
+      img.crossOrigin = 'Anonymous';
+    }
     const canvas = document.getElementById('canvas') as HTMLCanvasElement;
     canvas.width = img.width as number;
     canvas.height = img.height as number;
@@ -79,6 +82,9 @@ export class AppComponent implements OnInit {
   onDraw2(): void {
     const epsilon = 0.001;
     const img = document.getElementById('source2') as CanvasImageSource;
+    if ('crossOrigin' in img) {
+      img.crossOrigin = 'Anonymous';
+    }
     const canvas = document.getElementById('canvas3') as HTMLCanvasElement;
     canvas.width = img.width as number;
     canvas.height = img.height as number;
@@ -107,6 +113,9 @@ export class AppComponent implements OnInit {
 
   onDraw3(): void {
     const img = document.getElementById('source2') as CanvasImageSource;
+    if ('crossOrigin' in img) {
+      img.crossOrigin = 'Anonymous';
+    }
     const canvas = document.getElementById('canvas5') as HTMLCanvasElement;
     canvas.width = img.width as number;
     canvas.height = img.height as number;
@@ -135,6 +144,9 @@ export class AppComponent implements OnInit {
 
   onDraw4(): void {
     const img = document.getElementById('source2') as CanvasImageSource;
+    if ('crossOrigin' in img) {
+      img.crossOrigin = 'Anonymous';
+    }
     const canvas = document.getElementById('canvas7') as HTMLCanvasElement;
     canvas.width = img.width as number;
     canvas.height = img.height as number;
