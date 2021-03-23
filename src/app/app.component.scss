@@ -1,55 +1,45 @@
 .container {
-  margin: 20px;
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: 65px 330px 330px;
+}
+
+.with-spinner{
   position: relative;
+}
+
+.canvas {
+  border:1px solid #172e6b;
+  width: 353px;
+  height: 530px;
+}
+
+.canvas3 {
+  border:1px solid #172e6b;
+  width: 353px;
+  height: 530px;
+}
+
+.canvas4 {
+  border:1px solid #172e6b;
+  width: 400px;
+  height: 300px;
+}
+
+.canvas5 {
+  border:1px solid #172e6b;
+  width: 380px;
+  height: 540px;
+}
+
+.image-to-src {
+  display: none;
+}
+
+.button-container {
   width: 100%;
-  align-content: center;
+}
 
-  .common-color {
-    position: relative;
-    border-radius: 300px;
-    border: 1px solid;
-    width: 200px;
-    height: 200px;
-    margin: 0;
-  }
-
-  .button-group {
-    display: flex;
-    position: relative;
-    margin-left: 50px;
-  }
-
-  .color-pallet {
-    display: flex;
-
-    .color-with-slider {
-     display: table-row;
-      justify-content: right;
-      width: 300px;
-
-      .text{
-        text-align: center;
-        font-size: 20px;
-        background-color: darkorange;
-      }
-
-      .slider {
-        width: 100%;
-      }
-
-      .example-margin {
-        transform: translateX(200%);
-        width: 20%;
-      }
-
-      .color-block-red {
-        transform: translateX(100%);
-        display: flex;
-        border-radius: 100px;
-        width: 100px;
-        height: 100px;
-        margin: 0;
-      }
-    }
-  }
+button {
+  background-color: #4a5d9b !important;
 }

@@ -23,7 +23,9 @@
     "@angular/router": "~11.1.2",
     "@iplab/ngx-color-picker": "^2.0.4",
     "color-string": "^1.5.4",
+    "jimp": "^0.16.1",
     "ngx-color-picker": "^11.0.0",
+    "ngx-spinner": "^10.0.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.3"

@@ -1,95 +1,31 @@
 <div class="container">
-  <div class="color-pallet">
-    <div class="color-with-slider">
-      <div class="text">R</div>
-      <mat-form-field class="example-margin">
-        <label>
-          <input matInput type="number" min="0" max="255" [(ngModel)]="redCommon" (change)="onChangeInput()">
-        </label>
-      </mat-form-field>
-      <mat-slider color="accent" class="slider" min="0" max="255" step="1" value="100" (input) ="OnSliderRedChange($event)" [(ngModel)]="redCommon"></mat-slider>
-    </div>
-    <div class="color-with-slider">
-      <div class="text">G</div>
-      <mat-form-field class="example-margin">
-        <label>
-          <input matInput type="number" min="0" max="255" [(ngModel)]="greenCommon" (change)="onChangeInput()">
-        </label>
-      </mat-form-field>
-      <mat-slider color="accent" class="slider" min="0" max="255" step="1" value="100" (input) ="OnSliderGreenChange($event)" [(ngModel)]="greenCommon"></mat-slider>
-    </div>
-    <div class="color-with-slider">
-      <div class="text">B</div>
-      <mat-form-field class="example-margin">
-        <label>
-          <input matInput type="number" min="0" max="255" [(ngModel)]="blueCommon" (change)="onChangeInput()">
-        </label>
-      </mat-form-field>
-      <mat-slider color="accent" class="slider" min="0" max="255" step="1" value="100" (input) ="OnSliderBlueChange($event)" [(ngModel)]="blueCommon"></mat-slider>
-    </div>
+  <button [disabled]="!(spinnerSelector === 0 || spinnerSelector === 1)" mat-raised-button class="draw-button" color="accent" (click)="spinnerSelector = 1; spinner.show(); onDraw()">D<br>r<br>a<br>w<br></button>
+  <canvas id="canvas" class="canvas"></canvas>
+  <div class="with-spinner">
+    <ngx-spinner *ngIf="spinnerSelector === 1" bdColor = "rgba(59,74,255,0)" size = "large" type = "ball-clip-rotate-multiple" [fullScreen] = "false"></ngx-spinner>
+    <canvas id="canvas2" class="canvas" style="background-color: #4a5d9b"></canvas>
   </div>
-  <div class="color-pallet">
-    <div class="color-with-slider">
-      <div class="text">X</div>
-      <mat-form-field class="example-margin">
-        <label>
-          <input matInput min="0" max="1" [(ngModel)]="xCommon" (change)="onChangeInputXYZ()">
-        </label>
-      </mat-form-field>
-      <mat-slider color="accent" class="slider" min="0" max="1" step="0.01" value="0.3" (input)="OnSliderXChange($event)" [(ngModel)]="xCommon"></mat-slider>
-    </div>
-    <div class="color-with-slider">
-      <div class="text">Y</div>
-      <mat-form-field class="example-margin">
-        <label>
-          <input matInput min="0" max="1" [(ngModel)]="yCommon" (change)="onChangeInputXYZ()">
-        </label>
-      </mat-form-field>
-      <mat-slider color="accent" class="slider" min="0" max="1" step="0.01" value="0.3" (input) ="OnSliderYChange($event)" [(ngModel)]="yCommon"></mat-slider>
-    </div>
-    <div class="color-with-slider">
-      <div class="text">Z</div>
-      <mat-form-field class="example-margin">
-        <label>
-          <input matInput min="0" max="1" [(ngModel)]="zCommon" (change)="onChangeInputXYZ()">
-        </label>
-      </mat-form-field>
-      <mat-slider color="accent" class="slider" min="0" max="1" step="0.01" value="0.3" (input)= "OnSliderZChange($event)" [(ngModel)]="zCommon"></mat-slider>
-    </div>
+  <button mat-raised-button [disabled]="!(spinnerSelector === 0 || spinnerSelector === 2)" class="draw-button" color="accent" (click)="spinnerSelector = 2; spinner.show(); onDraw2()">D<br>r<br>a<br>w<br></button>
+  <canvas id="canvas3" class="canvas3"></canvas>
+  <div class="with-spinner">
+    <ngx-spinner *ngIf="spinnerSelector === 2" bdColor = "rgba(59,74,255,0)" size = "large" type = "ball-clip-rotate-multiple" [fullScreen] = "false"></ngx-spinner>
+    <canvas id="canvas4" class="canvas3" style="background-color: #4a5d9b"></canvas>
   </div>
-  <div class="color-pallet">
-    <div class="color-with-slider">
-      <div class="text">H</div>
-      <mat-form-field class="example-margin">
-        <label>
-          <input matInput min="0" max="1" [(ngModel)]="hCommon" (change)="onChangeInputHSV()">
-        </label>
-      </mat-form-field>
-      <mat-slider color="accent" class="slider" min="0" max="1" step="0.01" value="0.3" (input)="OnSliderHChange($event)" [(ngModel)]="hCommon"></mat-slider>
-    </div>
-    <div class="color-with-slider">
-      <div class="text">S</div>
-      <mat-form-field class="example-margin">
-        <label>
-          <input matInput min="0" max="1" [(ngModel)]="sCommon" (change)="onChangeInputHSV()">
-        </label>
-      </mat-form-field>
-      <mat-slider color="accent" class="slider" min="0" max="1" step="0.01" value="0.3" (input) ="OnSliderSChange($event)" [(ngModel)]="sCommon"></mat-slider>
-    </div>
-    <div class="color-with-slider">
-      <div class="text">V</div>
-      <mat-form-field class="example-margin">
-        <label>
-          <input matInput min="0" max="1" [(ngModel)]="vCommon" (change)="onChangeInputHSV()">
-        </label>
-      </mat-form-field>
-      <mat-slider color="accent" class="slider" min="0" max="1" step="0.01" value="0.3" (input)= "OnSliderVChange($event)" [(ngModel)]="vCommon"></mat-slider>
-    </div>
+  <button mat-raised-button [disabled]="!(spinnerSelector === 0 || spinnerSelector === 3)" class="draw-button" color="accent" (click)="spinnerSelector = 3; spinner.show(); onDraw3()">D<br>r<br>a<br>w<br></button>
+  <canvas id="canvas5" class="canvas3"></canvas>
+  <div class="with-spinner">
+    <ngx-spinner *ngIf="spinnerSelector === 3" bdColor = "rgba(59,74,255,0)" size = "large" type = "ball-clip-rotate-multiple" [fullScreen] = "false"></ngx-spinner>
+    <canvas id="canvas6" class="canvas3" style="background-color: #4a5d9b"></canvas>
   </div>
-  <div [style.background]="rgbColor"
-       [cpOutputFormat]="'rgba'"
-       [(colorPicker)]="rgbColor"
-       (colorPickerChange)="colorPickerSelcted($event)"
-       id="common" class="common-color" >
+  <button mat-raised-button [disabled]="!(spinnerSelector === 0 || spinnerSelector === 4)" class="draw-button" color="accent" (click)="spinnerSelector = 4; spinner.show(); onDraw4()">D<br>r<br>a<br>w<br></button>
+  <canvas id="canvas7" class="canvas3"></canvas>
+  <div class="with-spinner">
+    <ngx-spinner *ngIf="spinnerSelector === 4" bdColor = "rgba(59,74,255,0)" size = "large" type = "ball-clip-rotate-multiple" [fullScreen] = "false"></ngx-spinner>
+    <canvas id="canvas8" class="canvas3" style="background-color: #4a5d9b"></canvas>
   </div>
 </div>
+<img id="source" src='assets/carnum2.jpg' class="image-to-src">
+<img id="source2" src='assets/dino2.jpg' class="image-to-src">
+<img id="source3" src='assets/city.jpeg' class="image-to-src">
+<img id="source4" src='assets/river.jpeg' class="image-to-src">
+

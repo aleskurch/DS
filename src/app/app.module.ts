@@ -10,6 +10,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {ColorPickerModule} from 'ngx-color-picker';
+import {NgxSpinnerModule} from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import {ColorPickerModule} from 'ngx-color-picker';
     ColorPickerModule,
     MatButtonModule,
     ColorPickerModule,
-
+    NgxSpinnerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
