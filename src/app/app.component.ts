@@ -44,16 +44,16 @@ export class AppComponent implements OnInit {
     ctx.drawImage(img, 0, 0);
     const id = ctx.createImageData(1, 1);
     const d = id.data;
-    for (let i = 0; i < +img.height; i++) {
-      for (let j = 0; j < +img.width; j++) {
-        const grayScale = ctx.getImageData(j, i, 1, 1).data[0];
-        d[0] = grayScale;
-        d[1] = grayScale;
-        d[2] = grayScale;
-        d[3] = 255;
-        ctx.putImageData(id, j, i);
-      }
-    }
+    // for (let i = 0; i < +img.height; i++) {
+    //   for (let j = 0; j < +img.width; j++) {
+    //     const grayScale = ctx.getImageData(j, i, 1, 1).data[0];
+    //     d[0] = grayScale;
+    //     d[1] = grayScale;
+    //     d[2] = grayScale;
+    //     d[3] = 255;
+    //     ctx.putImageData(id, j, i);
+    //   }
+    // }
     this.drawingFunc(ctx, ctx2, img, d, 0, id);
   }
 
@@ -96,16 +96,16 @@ export class AppComponent implements OnInit {
     ctx.drawImage(img, 0, 0);
     const id = ctx2.createImageData(1, 1);
     const d = id.data;
-    for (let i = 0; i < +img.height; i++) {
-      for (let j = 0; j < +img.width; j++) {
-        const grayScale = ctx.getImageData(j, i, 1, 1).data[0];
-        d[0] = grayScale;
-        d[1] = grayScale;
-        d[2] = grayScale;
-        d[3] = 255;
-        ctx.putImageData(id, j, i);
-      }
-    }
+    // for (let i = 0; i < +img.height; i++) {
+    //   for (let j = 0; j < +img.width; j++) {
+    //     const grayScale = ctx.getImageData(j, i, 1, 1).data[0];
+    //     d[0] = grayScale;
+    //     d[1] = grayScale;
+    //     d[2] = grayScale;
+    //     d[3] = 255;
+    //     ctx.putImageData(id, j, i);
+    //   }
+    // }
     setTimeout(() => {
       this.adaptiveThresholding(ctx, ctx2, img, d, id, 150, epsilon);
     }, 0);
