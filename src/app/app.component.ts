@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
       const loader = new THREE.FontLoader();
       loader.load( 'assets/fonts/helvetiker.json', function ( font ) {
 
-        const color = 0x006699;
+        const color = 0x6e1b2d;
 
 
         const matLite = new THREE.MeshBasicMaterial( {
@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
       } );
 
         const matLite2 = new THREE.MeshBasicMaterial( {
-          color: 0xabc78e,
+          color: 0xa9d0cd,
           //transparent: true,
           opacity: 1,
           //side: THREE.DoubleSide,
@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
 
         const shapes = font.generateShapes( message, 100 );
 
-        const geometry = new THREE.TextGeometry( 'Z', {
+        const geometry = new THREE.TextGeometry( 'M', {
           font: font,
           size: 80,
           height: 20,
@@ -75,17 +75,17 @@ export class AppComponent implements OnInit {
 
         const geometry2 = new THREE.BoxGeometry( 0, 80, 20 );
         geometry2.translate( 0, 90, 60 );
-        const material = new THREE.MeshBasicMaterial( {color: 0xabc78e} );
+        const material = new THREE.MeshBasicMaterial( {color: 0xa9d0cd} );
         const cube = new THREE.Mesh( geometry2, material );
         scene.add( cube );
 
-        const geometry3 = new THREE.BoxGeometry( 62, 0, 20 );
-        geometry3.translate( 83, 0, 60 );
-        const material3 = new THREE.MeshBasicMaterial( {color: 0xabc78e} );
+        const geometry3 = new THREE.BoxGeometry( 86, 0, 20 );
+        geometry3.translate( 93, 0, 60 );
+        const material3 = new THREE.MeshBasicMaterial( {color: 0xa9d0cd} );
         const cube3 = new THREE.Mesh( geometry3, material3 );
         scene.add( cube3 );
 
-        const geometry4 = new THREE.TextGeometry( 'Z', {
+        const geometry4 = new THREE.TextGeometry( 'M', {
           font: font,
           size: 80,
           height: 1,
