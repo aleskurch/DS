@@ -1,5 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
-import {MatSliderChange} from '@angular/material/slider';
+import * as THREE from 'three';
+import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
+
 
 @Component({
   selector: 'app-root',
@@ -8,394 +10,140 @@ import {MatSliderChange} from '@angular/material/slider';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
-  title = 'DS';
-  redCommon = 197;
-  blueCommon = 19;
-  greenCommon = 203;
-  xCommon = this.RGBtoXYZ(197, 19, 203)[0];
-  yCommon = this.RGBtoXYZ(197, 19, 203)[1];
-  zCommon = this.RGBtoXYZ(197, 19, 203)[2];
-  hCommon = this.RGBtoHSV(197, 19, 203)[0];
-  sCommon = this.RGBtoHSV(197, 19, 203)[1];
-  vCommon = this.RGBtoHSV(197, 19, 203)[2];
-  rgbColor = 'rgb(197, 19, 203)';
 
   ngOnInit(): void {
-    document.getElementById('common').style.backgroundColor = `rgb(197, 19, 203)`;
-  }
+    let camera, scene, renderer;
 
-  OnSliderRedChange(redSlider: MatSliderChange): void {
-    this.redCommon = redSlider.value;
-    const toXYZ = this.RGBtoXYZ(this.redCommon, this.greenCommon, this.blueCommon);
-    this.xCommon = toXYZ[0];
-    this.yCommon = toXYZ[1];
-    this.zCommon = toXYZ[2];
-    const toHSV = this.RGBtoHSV(this.redCommon, this.greenCommon, this.blueCommon);
-    this.hCommon = toHSV[0];
-    this.sCommon = toHSV[1];
-    this.vCommon = toHSV[2];
-    document.getElementById('common').style.backgroundColor = `rgb(${this.redCommon},${this.greenCommon},${this.blueCommon})`;
-  }
+    init();
+    animate();
 
-  OnSliderGreenChange(greenSlider: MatSliderChange): void {
-    this.greenCommon = greenSlider.value;
-    const toXYZ = this.RGBtoXYZ(this.redCommon, this.greenCommon, this.blueCommon);
-    this.xCommon = toXYZ[0];
-    this.yCommon = toXYZ[1];
-    this.zCommon = toXYZ[2];
-    const toHSV = this.RGBtoHSV(this.redCommon, this.greenCommon, this.blueCommon);
-    this.hCommon = toHSV[0];
-    this.sCommon = toHSV[1];
-    this.vCommon = toHSV[2];
-    document.getElementById('common').style.backgroundColor = `rgb(${this.redCommon},${this.greenCommon},${this.blueCommon})`;
-  }
+    function init( ) {
 
-  OnSliderBlueChange(blueSlider: MatSliderChange): void {
-    this.blueCommon = blueSlider.value;
-    const toXYZ = this.RGBtoXYZ(this.redCommon, this.greenCommon, this.blueCommon);
-    this.xCommon = toXYZ[0];
-    this.yCommon = toXYZ[1];
-    this.zCommon = toXYZ[2];
-    const toHSV = this.RGBtoHSV(this.redCommon, this.greenCommon, this.blueCommon);
-    this.hCommon = toHSV[0];
-    this.sCommon = toHSV[1];
-    this.vCommon = toHSV[2];
-    document.getElementById('common').style.backgroundColor = `rgb(${this.redCommon},${this.greenCommon},${this.blueCommon})`;
-  }
+      camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
+      camera.position.set( 0, - 400, 600 );
 
-  OnSliderXChange(xSlider: MatSliderChange): void {
-    this.xCommon = xSlider.value;
-    const toRGB = this.XYZtoRGB(this.xCommon, this.yCommon, this.zCommon);
-    this.redCommon = toRGB[0];
-    this.greenCommon = toRGB[1];
-    this.blueCommon = toRGB[2];
-    if (toRGB[3] === -Infinity) {
-      const toXYZ = this.RGBtoXYZ(this.redCommon, this.greenCommon, this.blueCommon);
-      this.xCommon = toXYZ[0];
-      this.yCommon = toXYZ[1];
-      this.zCommon = toXYZ[2];
-      alert('Invalid Color');
-    }
-    const toHSV = this.RGBtoHSV(toRGB[0], toRGB[1], toRGB[2]);
-    this.hCommon = toHSV[0];
-    this.sCommon = toHSV[1];
-    this.vCommon = toHSV[2];
-    document.getElementById('common').style.backgroundColor = `rgb(${toRGB[0]},${toRGB[1]},${toRGB[2]})`;
-  }
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color( 0xf0f0f0 );
 
-  OnSliderYChange(ySlider: MatSliderChange): void {
-    this.yCommon = ySlider.value;
-    const toRGB = this.XYZtoRGB(this.xCommon, this.yCommon, this.zCommon);
-    this.redCommon = toRGB[0];
-    this.greenCommon = toRGB[1];
-    this.blueCommon = toRGB[2];
-    if (toRGB[3] === -Infinity) {
-      const toXYZ = this.RGBtoXYZ(this.redCommon, this.greenCommon, this.blueCommon);
-      this.xCommon = toXYZ[0];
-      this.yCommon = toXYZ[1];
-      this.zCommon = toXYZ[2];
-      alert('Invalid Color');
-    }
-    const toHSV = this.RGBtoHSV(toRGB[0], toRGB[1], toRGB[2]);
-    this.hCommon = toHSV[0];
-    this.sCommon = toHSV[1];
-    this.vCommon = toHSV[2];
-    document.getElementById('common').style.backgroundColor = `rgb(${toRGB[0]},${toRGB[1]},${toRGB[2]})`;
-  }
+      const loader = new THREE.FontLoader();
+      loader.load( 'assets/fonts/helvetiker.json', function ( font ) {
 
-  OnSliderZChange(zSlider: MatSliderChange): void {
-    this.zCommon = zSlider.value;
-    const toRGB = this.XYZtoRGB(this.xCommon, this.yCommon, this.zCommon);
-    this.redCommon = toRGB[0];
-    this.greenCommon = toRGB[1];
-    this.blueCommon = toRGB[2];
-    if (toRGB[3] === -Infinity) {
-      const toXYZ = this.RGBtoXYZ(this.redCommon, this.greenCommon, this.blueCommon);
-      this.xCommon = toXYZ[0];
-      this.yCommon = toXYZ[1];
-      this.zCommon = toXYZ[2];
-      alert('Invalid Color');
-    }
-    const toHSV = this.RGBtoHSV(toRGB[0], toRGB[1], toRGB[2]);
-    this.hCommon = toHSV[0];
-    this.sCommon = toHSV[1];
-    this.vCommon = toHSV[2];
-    document.getElementById('common').style.backgroundColor = `rgb(${toRGB[0]},${toRGB[1]},${toRGB[2]})`;
-  }
-
-  onChangeInput(): void {
-    if (this.redCommon > 255 || this.redCommon < 0) {
-      alert('Wrong value');
-      this.redCommon = 255;
-    }
-    if (this.greenCommon > 255 || this.greenCommon < 0) {
-      alert('Wrong value');
-      this.greenCommon = 255;
-    }
-    if (this.blueCommon > 255 || this.blueCommon < 0) {
-      alert('Wrong value');
-      this.blueCommon = 255;
-    }
-    const toXYZ = this.RGBtoXYZ(this.redCommon, this.greenCommon, this.blueCommon);
-    this.xCommon = toXYZ[0];
-    this.yCommon = toXYZ[1];
-    this.zCommon = toXYZ[2];
-    const toHSV = this.RGBtoHSV(this.redCommon, this.greenCommon, this.blueCommon);
-    this.hCommon = toHSV[0];
-    this.sCommon = toHSV[1];
-    this.vCommon = toHSV[2];
-    document.getElementById('common').style.backgroundColor = `rgb(${this.redCommon},${this.greenCommon},${this.blueCommon})`;
-  }
-
-  onChangeInputXYZ(): void {
-    if (this.xCommon > 1 || this.xCommon < 0) {
-      alert('Wrong value');
-      this.xCommon = 1;
-    }
-    if (this.yCommon > 1 || this.yCommon < 0) {
-      alert('Wrong value');
-      this.yCommon = 1;
-    }
-    if (this.zCommon > 1 || this.zCommon < 0) {
-      alert('Wrong value');
-      this.zCommon = 1;
-    }
-    const toRGB = this.XYZtoRGB(this.xCommon, this.yCommon, this.zCommon);
-    this.redCommon = toRGB[0];
-    this.greenCommon = toRGB[1];
-    this.blueCommon = toRGB[2];
-    if (toRGB[3] === -Infinity) {
-      alert('Invalid Color');
-      const toXYZ = this.RGBtoXYZ(this.redCommon, this.greenCommon, this.blueCommon);
-      this.xCommon = toXYZ[0];
-      this.yCommon = toXYZ[1];
-      this.zCommon = toXYZ[2];
-    }
-    const toHSV = this.RGBtoHSV(toRGB[0], toRGB[1], toRGB[2]);
-    this.hCommon = toHSV[0];
-    this.sCommon = toHSV[1];
-    this.vCommon = toHSV[2];
-    document.getElementById('common').style.backgroundColor = `rgb(${toRGB[0]},${toRGB[1]},${toRGB[2]})`;
+        const color = 0x006699;
 
 
-  }
+        const matLite = new THREE.MeshBasicMaterial( {
+          color: color,
+          //transparent: true,
+          opacity: 1,
+          //side: THREE.DoubleSide,
+          // wireframe: true,
+          edgeColor: 0x006699
+      } );
 
-  onChangeInputHSV(): void {
-    if (this.hCommon > 1 || this.hCommon < 0) {
-      alert('Wrong value');
-      this.hCommon = 1;
-    }
-    if (this.sCommon > 1 || this.sCommon < 0) {
-      alert('Wrong value');
-      this.sCommon = 1;
-    }
-    if (this.vCommon > 1 || this.vCommon < 0) {
-      alert('Wrong value');
-      this.vCommon = 1;
-    }
-    const toRGB = this.HSVtoRGB(this.hCommon, this.sCommon, this.vCommon);
-    this.redCommon = toRGB[0];
-    this.greenCommon = toRGB[1];
-    this.blueCommon = toRGB[2];
-    const toXYZ = this.RGBtoXYZ(toRGB[0], toRGB[1], toRGB[2]);
-    this.xCommon = toXYZ[0];
-    this.yCommon = toXYZ[1];
-    this.zCommon = toXYZ[2];
-    document.getElementById('common').style.backgroundColor = `rgb(${toRGB[0]},${toRGB[1]},${toRGB[2]})`;
-  }
+        const matLite2 = new THREE.MeshBasicMaterial( {
+          color: 0xabc78e,
+          //transparent: true,
+          opacity: 1,
+          //side: THREE.DoubleSide,
+          // wireframe: true,
+          edgeColor: 0x006699
+      } );
 
-  OnSliderHChange(hSlider: MatSliderChange): void {
-    this.hCommon = hSlider.value;
-    const toRGB = this.HSVtoRGB(this.hCommon, this.sCommon, this.vCommon);
-    this.redCommon = toRGB[0];
-    this.greenCommon = toRGB[1];
-    this.blueCommon = toRGB[2];
-    const toXYZ = this.RGBtoXYZ(toRGB[0], toRGB[1], toRGB[2]);
-    this.xCommon = toXYZ[0];
-    this.yCommon = toXYZ[1];
-    this.zCommon = toXYZ[2];
-    document.getElementById('common').style.backgroundColor = `rgb(${toRGB[0]},${toRGB[1]},${toRGB[2]})`;
-  }
+        const message = "K";
 
-  OnSliderSChange(sSlider: MatSliderChange): void {
-    this.sCommon = sSlider.value;
-    const toRGB = this.HSVtoRGB(this.hCommon, this.sCommon, this.vCommon);
-    this.redCommon = toRGB[0];
-    this.greenCommon = toRGB[1];
-    this.blueCommon = toRGB[2];
-    const toXYZ = this.RGBtoXYZ(toRGB[0], toRGB[1], toRGB[2]);
-    this.xCommon = toXYZ[0];
-    this.yCommon = toXYZ[1];
-    this.zCommon = toXYZ[2];
-    document.getElementById('common').style.backgroundColor = `rgb(${toRGB[0]},${toRGB[1]},${toRGB[2]})`;
-  }
+        const shapes = font.generateShapes( message, 100 );
 
-  OnSliderVChange(vSlider: MatSliderChange): void {
-    this.vCommon = vSlider.value;
-    const toRGB = this.HSVtoRGB(this.hCommon, this.sCommon, this.vCommon);
-    this.redCommon = toRGB[0];
-    this.greenCommon = toRGB[1];
-    this.blueCommon = toRGB[2];
-    const toXYZ = this.RGBtoXYZ(toRGB[0], toRGB[1], toRGB[2]);
-    this.xCommon = toXYZ[0];
-    this.yCommon = toXYZ[1];
-    this.zCommon = toXYZ[2];
-    document.getElementById('common').style.backgroundColor = `rgb(${toRGB[0]},${toRGB[1]},${toRGB[2]})`;
-  }
+        const geometry = new THREE.TextGeometry( 'Z', {
+          font: font,
+          size: 80,
+          height: 20,
+          opacity: 1,
+          curveSegments: 1,
+          edgeColor: color
+        } );
 
-  XYZtoRGB(X, Y, Z): number[] {
-    const R = Math.round(this.adj(3.2404542 * X - 1.5371385 * Y - 0.4985314 * Z) * 255);
-    const G = Math.round(this.adj(-0.9692660 * X + 1.8760108 * Y + 0.0415560 * Z) * 255);
-    const B = Math.round(this.adj(0.0556434 * X - 0.2040259 * Y + 1.0572252 * Z) * 255);
-    console.log([R, G, B]);
-    if (R > 255 || R < 0) {
-      return [0, G, B, -Infinity];
-    }
-    if (G > 255 || G < 0) {
-      return [R, 0, B, -Infinity];
-    }
-    if (B > 255 || B < 0) {
-      return [R, G, 0, -Infinity];
-    }
-    else {
-      return [R, G, B, Infinity];
-    }
-  }
+        geometry.computeBoundingBox();
 
-  RGBtoXYZ(sR, sG, sB): number[] {
-    let varR = (sR / 255);
-    let varG = (sG / 255);
-    let varB = (sB / 255);
+        const xMid = - 0.5 * ( geometry.boundingBox.max.x - geometry.boundingBox.min.x );
 
-    if (varR > 0.04045) {
-      varR = Math.pow((varR + 0.055) / 1.055, 2.4);
-    } else {
-      varR = varR / 12.92;
-    }
-    if (varG > 0.04045) {
-      varG = Math.pow((varG + 0.055) / 1.055, 2.4);
-    } else {
-      varG = varG / 12.92;
-    }
-    if (varB > 0.04045) {
-      varB = Math.pow((varB + 0.055) / 1.055, 2.4);
-    } else {
-      varB = varB / 12.92;
+        geometry.translate( 50, 50, 50 );
+
+        // make shape ( N.B. edge view not visible )
+
+        const text = new THREE.Mesh( geometry, matLite );
+        text.position.z = 0;
+
+        const geometry2 = new THREE.BoxGeometry( 0, 80, 20 );
+        geometry2.translate( 0, 90, 60 );
+        const material = new THREE.MeshBasicMaterial( {color: 0xabc78e} );
+        const cube = new THREE.Mesh( geometry2, material );
+        scene.add( cube );
+
+        const geometry3 = new THREE.BoxGeometry( 62, 0, 20 );
+        geometry3.translate( 83, 0, 60 );
+        const material3 = new THREE.MeshBasicMaterial( {color: 0xabc78e} );
+        const cube3 = new THREE.Mesh( geometry3, material3 );
+        scene.add( cube3 );
+
+        const geometry4 = new THREE.TextGeometry( 'Z', {
+          font: font,
+          size: 80,
+          height: 1,
+          opacity: 1,
+          curveSegments: 1,
+          edgeColor: color
+        } );
+        geometry4.translate( 50, 50, 0);
+
+        geometry.computeBoundingBox();
+
+        const text2 = new THREE.Mesh( geometry4, matLite2 );
+
+
+        scene.add( text2 );
+        scene.add( text );
+
+        var sphereAxis = new THREE.AxesHelper(200);
+        text.add(sphereAxis);
+
+        // make line shape ( N.B. edge view remains visible )
+
+      } ); //end load function
+
+      renderer = new THREE.WebGLRenderer( { antialias: true } );
+      renderer.setPixelRatio( window.devicePixelRatio );
+      renderer.setSize( window.innerWidth, window.innerHeight );
+      document.body.appendChild( renderer.domElement );
+
+      const controls = new OrbitControls( camera, renderer.domElement );
+      controls.target.set( 0, 0, 0 );
+      controls.update();
+
+      window.addEventListener( 'resize', onWindowResize );
+
+    } // end init
+
+    function onWindowResize() {
+
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+
+      renderer.setSize( window.innerWidth, window.innerHeight );
+
     }
 
-    const X = varR * 0.4124 + varG * 0.3576 + varB * 0.1805;
-    const Y = varR * 0.2126 + varG * 0.7152 + varB * 0.0722;
-    const Z = varR * 0.0193 + varG * 0.1192 + varB * 0.9505;
-    return [+X.toFixed(4), +Y.toFixed(4), +Z.toFixed(4)];
-  }
+    function animate() {
 
-  RGBtoHSV(r, g, b): number[] {
-    const max = Math.max(r, g, b);
-    const min = Math.min(r, g, b);
-    const d = max - min;
-    let h;
-    const s = (max === 0 ? 0 : d / max);
-    const v = max / 255;
+      requestAnimationFrame( animate );
 
-    switch (max) {
-      case min:
-        h = 0;
-        break;
-      case r:
-        h = (g - b) + d * (g < b ? 6 : 0);
-        h /= 6 * d;
-        break;
-      case g:
-        h = (b - r) + d * 2;
-        h /= 6 * d;
-        break;
-      case b:
-        h = (r - g) + d * 4;
-        h /= 6 * d;
-        break;
+      render();
+
     }
 
-    return [+h.toFixed(4), +s.toFixed(4), +v.toFixed(4)];
-  }
+    function render() {
 
-  HSVtoRGB(h, s, v): number[] {
-    let r;
-    let g;
-    let b;
-    let i;
-    let f;
-    let p;
-    let q;
-    let t;
-    i = Math.floor(h * 6);
-    f = h * 6 - i;
-    p = v * (1 - s);
-    q = v * (1 - f * s);
-    t = v * (1 - (1 - f) * s);
-    switch (i % 6) {
-      case 0: {
-        r = v;
-        g = t;
-        b = p;
-      }
-        break;
-      case 1: {
-        r = q;
-        g = v;
-        b = p;
-      }
-        break;
-      case 2: {
-        r = p;
-        g = v;
-        b = t;
-      }
-        break;
-      case 3: {
-        r = p;
-        g = q;
-        b = v;
-      }
-        break;
-      case 4: {
-        r = t;
-        g = p;
-        b = v;
-      }
-        break;
-      case 5: {
-        r = v;
-        g = p;
-        b = q;
-      }
-        break;
-    }
-    return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
-  }
+      renderer.render( scene, camera );
 
-  adj(C): number {
-    if (C < 0) {
-      return -1;
     }
-    if (Math.abs(C) < 0.0031308) {
-      return 12.92 * C;
-    }
-    return 1.055 * Math.pow(C, 0.41666) - 0.055;
-  }
-
-  colorPickerSelcted(color: string): void {
-    const matchColors = /rgb\((\d{1,3}),(\d{1,3}),(\d{1,3})\)/;
-    const match = matchColors.exec(color);
-    this.redCommon = +match[1];
-    this.greenCommon = +match[2];
-    this.blueCommon = +match[3];
-    const toXYZ = this.RGBtoXYZ(this.redCommon, this.greenCommon, this.blueCommon);
-    this.xCommon = toXYZ[0];
-    this.yCommon = toXYZ[1];
-    this.zCommon = toXYZ[2];
-    const toHSV = this.RGBtoHSV(this.redCommon, this.greenCommon, this.blueCommon);
-    this.hCommon = toHSV[0];
-    this.sCommon = toHSV[1];
-    this.vCommon = toHSV[2];
   }
 }
