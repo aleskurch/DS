@@ -23,37 +23,36 @@ export class AppComponent implements OnInit {
       camera.position.set( 0, - 400, 600 );
 
       scene = new THREE.Scene();
-      scene.background = new THREE.Color( 0xf0f0f0 );
+
+      // ЦВЕТ ФОНА
+      // (выбрать в css и вставить после 0x )
+      scene.background = new THREE.Color( 0x857163 );
 
       const loader = new THREE.FontLoader();
       loader.load( 'assets/fonts/helvetiker.json', function ( font ) {
 
-        const color = 0x006699;
+        // ЦВЕТ БУКВЫ
+        // (выбрать в css и вставить после 0x )
+
+        const color = 0xa8335;
 
 
         const matLite = new THREE.MeshBasicMaterial( {
           color: color,
-          //transparent: true,
           opacity: 1,
-          //side: THREE.DoubleSide,
-          // wireframe: true,
-          edgeColor: 0x006699
       } );
 
         const matLite2 = new THREE.MeshBasicMaterial( {
-          color: 0xabc78e,
-          //transparent: true,
+          // ЦВЕТ ТЕНИ
+          // (выбрать в css и вставить после 0x )
+
+          color: 0x069d92,
           opacity: 1,
-          //side: THREE.DoubleSide,
-          // wireframe: true,
-          edgeColor: 0x006699
       } );
 
-        const message = "K";
-
-        const shapes = font.generateShapes( message, 100 );
-
-        const geometry = new THREE.TextGeometry( 'Z', {
+        // ВАША БУКВА
+        // ЛУчше лытынь, честно
+        const geometry = new THREE.TextGeometry( 'A', {
           font: font,
           size: 80,
           height: 20,
@@ -64,28 +63,37 @@ export class AppComponent implements OnInit {
 
         geometry.computeBoundingBox();
 
-        const xMid = - 0.5 * ( geometry.boundingBox.max.x - geometry.boundingBox.min.x );
-
         geometry.translate( 50, 50, 50 );
-
-        // make shape ( N.B. edge view not visible )
 
         const text = new THREE.Mesh( geometry, matLite );
         text.position.z = 0;
 
         const geometry2 = new THREE.BoxGeometry( 0, 80, 20 );
         geometry2.translate( 0, 90, 60 );
-        const material = new THREE.MeshBasicMaterial( {color: 0xabc78e} );
+        // ЦВЕТ ТЕНИ
+        // (выбрать в css и вставить после 0x )
+        const material = new THREE.MeshBasicMaterial( {color: 0x069d92} );
         const cube = new THREE.Mesh( geometry2, material );
         scene.add( cube );
 
-        const geometry3 = new THREE.BoxGeometry( 62, 0, 20 );
-        geometry3.translate( 83, 0, 60 );
-        const material3 = new THREE.MeshBasicMaterial( {color: 0xabc78e} );
+        // размер проекции на XY
+        // (new THREE.BoxGeometry( 80, ...)
+        // заменить 80(подобрать опытным путем)
+
+        const geometry3 = new THREE.BoxGeometry( 80, 0, 20 );
+        // размер ОТСТУПА проекции на XY
+        // geometry3.translate( 93, ...
+        // заменить 93(подобрать опытным путем)
+        geometry3.translate( 93, 0, 60 );
+        // ЦВЕТ ТЕНИ
+        // (выбрать в css и вставить после 0x )
+        const material3 = new THREE.MeshBasicMaterial( {color: 0x069d92} );
         const cube3 = new THREE.Mesh( geometry3, material3 );
         scene.add( cube3 );
 
-        const geometry4 = new THREE.TextGeometry( 'Z', {
+        // ВАША БУКВА( для тени)
+        // ЛУчше лытынь, честно
+        const geometry4 = new THREE.TextGeometry( 'A', {
           font: font,
           size: 80,
           height: 1,
@@ -106,9 +114,8 @@ export class AppComponent implements OnInit {
         var sphereAxis = new THREE.AxesHelper(200);
         text.add(sphereAxis);
 
-        // make line shape ( N.B. edge view remains visible )
 
-      } ); //end load function
+      } );
 
       renderer = new THREE.WebGLRenderer( { antialias: true } );
       renderer.setPixelRatio( window.devicePixelRatio );
@@ -121,7 +128,7 @@ export class AppComponent implements OnInit {
 
       window.addEventListener( 'resize', onWindowResize );
 
-    } // end init
+    }
 
     function onWindowResize() {
 
